@@ -1,0 +1,79 @@
+{
+  "name": "inventory-management",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
+    "electron:build": "vite build && electron-builder --win --x64",
+    "rebuild": "electron-rebuild -f -w better-sqlit3"
+  },
+  "main": "electron/main.js",
+  "build": {
+    "appId": "com.inventory.management",
+    "productName": "库存管理系统",
+    "copyright": "Copyright © 2024",
+    "directories": {
+      "output": "dist_electron",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "src/assets/**/*"   
+    ],
+    "extraResources": [
+      {
+        "from": "database",
+        "to": "database"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "./build/icons/cc.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "库存管理系统",
+      "installerIcon": "./build/icons/cc.ico",
+      "uninstallerIcon": "./build/icons/cc.ico"
+    },
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**/*"
+    ]
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.1.1",
+    "echarts": "^5.5.0",
+    "element-plus": "^2.6.1",
+    "vue": "^3.4.21",
+    "vue-echarts": "^6.6.9",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.7.1",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^29.1.4",
+    "electron-builder": "^24.13.3",
+    "electron-rebuild": "^3.2.9",
+    "vite": "^5.1.6",
+    "wait-on": "^8.0.1"
+  }
+}
