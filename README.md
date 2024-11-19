@@ -1,10 +1,18 @@
 # 库存管理系统
 
-## 安装说明
-1. 双击安装包运行
-2. 选择安装目录
-3. 等待安装完成
-4. 从开始菜单或桌面快捷方式启动
+## 运行
+
+## 删除现有的 node_modules 和 package-lock.json
+rm -rf node_modules package-lock.json
+
+## 清理 npm 缓存
+npm cache clean --force
+
+## 重新安装依赖
+npm install
+
+## 运行
+npm run electron:dev   
 
 ## 基本使用
 1. 账号入库
@@ -14,4 +22,3 @@
 
 ## 注意事项
 1. 定期备份数据
-2. 保持网络连接以获取更新
